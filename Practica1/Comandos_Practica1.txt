@@ -1,0 +1,343 @@
+
+---------------------------------------
+############################# Switch2
+*********** vtp
+enable
+config t
+vtp domain g22
+vtp password g22
+vtp mode server
+exit
+show vtp status
+***********vlans
+config t
+vlan 14
+name Ventas
+exit
+vlan 24
+name Distribucion
+exit
+vlan 34
+name Administracion
+exit
+vlan 44
+name Servidores
+exit
+vlan 99
+name Management&Native
+exit
+vlan 999
+name BlackHole
+exit
+*********** puertos troncales
+enable
+config t
+interface fa0/1
+switchport mode trunk
+exit
+interface fa0/2
+switchport mode trunk
+exit
+interface fa0/3
+switchport mode trunk
+exit
+interface fa0/4
+switchport mode trunk
+------------------------------------------------
+
+Switch0
+*vtp
+enable
+config t
+vtp domain g22
+vtp password g22
+vtp mode client
+
+-------------------------------------------------
+############################# Switch0
+************ vtp
+enable
+config t
+vtp domain g22
+vtp password g22
+vtp mode client
+
+*********** puertos troncales
+enable
+config t
+interface fa0/3
+switchport mode trunk
+exit
+interface fa0/4
+switchport mode trunk
+exit
+interface fa0/5
+switchport mode trunk
+exit
+interface fa0/6
+switchport mode trunk
+
+*********** modo acceso
+enable
+config t
+interface fa0/7
+switchport mode access
+switchoport access vlan 14
+.......
+.......
+----------------------------------------------------
+
+############################# Switch1
+
+************ vtp
+enable
+config t
+vtp domain g22
+vtp password g22
+vtp mode client
+
+*********** puertos troncales
+enable
+config t
+interface fa0/3
+switchport mode trunk
+exit
+interface fa0/4
+switchport mode trunk
+exit
+interface fa0/5
+switchport mode trunk
+exit
+interface fa0/6
+switchport mode trunk
+
+
+
+__________________________________________________________________________________________
+Port security
+
+********** Ventas
+enable
+config t
+interface fa0/1
+switchport port-security
+switchport port-security violation shutdown || protect
+switchport port-security mac-address sticky 
+switchport port-security maximum 5
+
+enable
+config t
+interface fa0/2
+switchport port-security
+switchport port-security violation shutdown || protect
+switchport port-security mac-address sticky 
+switchport port-security maximum 5
+
+.....
+.....
+
+********** Distribucion
+enable
+config t
+interface fa0/2
+switchport port-security
+switchport port-security violation shutdown || protect
+switchport port-security mac-address sticky 
+switchport port-security maximum 1
+
+enable
+config t
+interface fa0/7
+switchport port-security
+switchport port-security violation shutdown || protect
+switchport port-security mac-address sticky 
+switchport port-security maximum 1
+
+enable
+config t
+interface fa0/8
+switchport port-security
+switchport port-security violation shutdown || protect
+switchport port-security mac-address sticky 
+switchport port-security maximum 1
+visualizar
+show port-security interface fa0/2
+
+********** Administracion
+
+enable
+config t
+interface fa0/2
+switchport port-security
+switchport port-security violation shutdown || protect
+switchport port-security mac-address sticky 
+switchport port-security maximum 1
+
+
+
+*Volver a encender el puerto
+enable
+config t
+interface fa#/#
+shutdown
+no shutdown
+
+
+****** Cambiar vlan nativa en puertos troncales
+enable
+config t
+interface fa#/#
+switchport mode trunk
+switchport trunk native vlan #vlan
+
+Switch#show interfaces trunk
+
+Port        Mode         Encapsulation  Status        Native vlan
+Fa0/3       on           802.1q         trunking      1
+Fa0/4       on           802.1q         trunking      1
+Fa0/5       auto         n-802.1q       trunking      1
+Fa0/6       auto         n-802.1q       trunking      1
+
+
+****** Swtich 0
+
+
+Port        Mode         Encapsulation  Status        Native vlan
+Fa0/1       on           802.1q         trunking      1
+Fa0/2       on           802.1q         trunking      1
+Fa0/3       on           802.1q         trunking      1
+Fa0/4       on           802.1q         trunking      1
+Fa0/5       on           802.1q         trunking      1
+Fa0/6       on           802.1q         trunking      1
+
+Switch#show interfaces trunk
+Port        Mode         Encapsulation  Status        Native vlan
+Fa0/1       on           802.1q         trunking      1
+Fa0/2       on           802.1q         trunking      1
+Fa0/3       on           802.1q         trunking      1
+Fa0/4       on           802.1q         trunking      1
+
+
+switchport trunk native vlan 99
+
+
+Switch# show interfaces status 
+
+
+enable
+config t
+int range fa0/9-24
+no shutdown
+
+switchport mode access
+switchport access vlan 999
+
+//Desactiva el protocolo dtp
+enable
+config t
+int fa0/3
+switchport nonegotiate
+
+*visualizar info del puerto
+show int fa#/# switchport
+
+
+//Hacer lo anterior en todos los puertos troncales
+
+
+show int fa0/3 switchport
+
+show int fa0/4 switchport
+
+show int fa0/5 switchport
+
+show int fa0/6 switchport
+
+
+S1# show port-security interface f0/1
+
+enable
+config t
+interface fa0/2
+switchport port-security
+switchport port-security violation shutdown || protect
+switchport port-security mac-address sticky 
+switchport port-security maximum 5
+
+
+//Asignar múltiples port-security
+
+int range fa0/9-24
+switchport port-security
+switchport port-security violation protect
+switchport port-security mac-address sticky 
+switchport port-security maximum 5
+
+
+int range fa0/7-24
+switchport port-security
+switchport port-security violation protect
+switchport port-security mac-address sticky 
+switchport port-security maximum 5
+
+
+
+int range fa0/8-24
+switchport port-security
+switchport port-security violation protect
+switchport port-security mac-address sticky 
+switchport port-security maximum 5
+
+int range fa0/6-24
+switchport port-security
+switchport port-security violation protect
+switchport port-security mac-address sticky 
+switchport port-security maximum 5
+
+
+int range fa0/4-24
+switchport port-security
+switchport port-security violation protect
+switchport port-security mac-address sticky 
+switchport port-security maximum 5
+
+
+***********************************************Ethernnel Channel
+
+--- PORT CHANEL
+
+LACP
+enable
+config t
+interface (range)? fa#/#(-#)?
+channel-protocol lacp
+channel-group 1 mode active||pasive
+
+PAGP
+enable
+config t
+interface (range)? fa#/#(-#)?
+channel-protocol pagp
+channel-group 1 mode auto||desirable
+
+verificar PortChannel
+show etherchannel summary
+
+verificar tipo de port channel
+show etherchannel port-channel
+
+ROUTER
+
+ENCENDER PUERTO
+enable
+config t
+interface fa#/#
+no shutdown
+
+Router On A stick
+
+interface fastEthernet #/#.#vlan
+encapsulation dot1Q #vlan
+ip address gateway MaskSubRed
+
+copy running-config startup-config
