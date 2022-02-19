@@ -1,7 +1,7 @@
 
 ---------------------------------------
 ############################# Switch2
-*********** vtp
+# *********** vtp
 enable
 config t
 vtp domain g22
@@ -9,7 +9,8 @@ vtp password g22
 vtp mode server
 exit
 show vtp status
-***********vlans
+
+# ***********vlans
 config t
 vlan 14
 name Ventas
@@ -29,7 +30,8 @@ exit
 vlan 999
 name BlackHole
 exit
-*********** puertos troncales
+
+# *********** puertos troncales
 enable
 config t
 interface fa0/1
@@ -43,7 +45,8 @@ switchport mode trunk
 exit
 interface fa0/4
 switchport mode trunk
-------------------------------------------------
+
+# ------------------------------------------------
 
 Switch0
 *vtp
@@ -53,16 +56,16 @@ vtp domain g22
 vtp password g22
 vtp mode client
 
--------------------------------------------------
+# -------------------------------------------------
 ############################# Switch0
-************ vtp
+# ************ vtp
 enable
 config t
 vtp domain g22
 vtp password g22
 vtp mode client
 
-*********** puertos troncales
+# *********** puertos troncales
 enable
 config t
 interface fa0/3
@@ -77,7 +80,7 @@ exit
 interface fa0/6
 switchport mode trunk
 
-*********** modo acceso
+# *********** modo acceso
 enable
 config t
 interface fa0/7
@@ -85,18 +88,18 @@ switchport mode access
 switchoport access vlan 14
 .......
 .......
-----------------------------------------------------
+# ----------------------------------------------------
 
 ############################# Switch1
 
-************ vtp
+# ************ vtp
 enable
 config t
 vtp domain g22
 vtp password g22
 vtp mode client
 
-*********** puertos troncales
+# *********** puertos troncales
 enable
 config t
 interface fa0/3
@@ -113,10 +116,11 @@ switchport mode trunk
 
 
 
-__________________________________________________________________________________________
-Port security
+# ========================================================
 
-********** Ventas
+# CONFIGURACION DE Port security
+# --------------------------------
+# ********** Ventas
 enable
 config t
 interface fa0/1
@@ -134,9 +138,8 @@ switchport port-security mac-address sticky
 switchport port-security maximum 5
 
 .....
-.....
-
-********** Distribucion
+# --------------------------------
+# ********** Distribucion
 enable
 config t
 interface fa0/2
@@ -163,7 +166,8 @@ switchport port-security maximum 1
 visualizar
 show port-security interface fa0/2
 
-********** Administracion
+# --------------------------------
+# ********** Administracion
 
 enable
 config t
@@ -174,8 +178,8 @@ switchport port-security mac-address sticky
 switchport port-security maximum 1
 
 
-
-*Volver a encender el puerto
+# --------------------------------
+# Volver a encender el puerto
 enable
 config t
 interface fa#/#
@@ -183,14 +187,15 @@ shutdown
 no shutdown
 
 
-****** Cambiar vlan nativa en puertos troncales
+# ****** Cambiar vlan nativa en puertos truncales
 enable
 config t
 interface fa#/#
 switchport mode trunk
 switchport trunk native vlan #vlan
 
-Switch#show interfaces trunk
+# Mostrar Interfaces Truncales
+show interfaces trunk
 
 Port        Mode         Encapsulation  Status        Native vlan
 Fa0/3       on           802.1q         trunking      1
@@ -199,9 +204,7 @@ Fa0/5       auto         n-802.1q       trunking      1
 Fa0/6       auto         n-802.1q       trunking      1
 
 
-****** Swtich 0
-
-
+# ****** Swtich 0
 Port        Mode         Encapsulation  Status        Native vlan
 Fa0/1       on           802.1q         trunking      1
 Fa0/2       on           802.1q         trunking      1
@@ -210,7 +213,10 @@ Fa0/4       on           802.1q         trunking      1
 Fa0/5       on           802.1q         trunking      1
 Fa0/6       on           802.1q         trunking      1
 
-Switch#show interfaces trunk
+
+
+# Mostrar Interfaces Truncales
+show interfaces trunk
 Port        Mode         Encapsulation  Status        Native vlan
 Fa0/1       on           802.1q         trunking      1
 Fa0/2       on           802.1q         trunking      1
@@ -232,17 +238,17 @@ no shutdown
 switchport mode access
 switchport access vlan 999
 
-//Desactiva el protocolo dtp
+# Desactiva el protocolo dtp
 enable
 config t
 int fa0/3
 switchport nonegotiate
 
-*visualizar info del puerto
+# visualizar info del puerto
 show int fa#/# switchport
 
 
-//Hacer lo anterior en todos los puertos troncales
+# Hacer lo anterior en todos los puertos troncales
 
 
 show int fa0/3 switchport
@@ -265,7 +271,7 @@ switchport port-security mac-address sticky
 switchport port-security maximum 5
 
 
-//Asignar múltiples port-security
+# Asignar múltiples port-security
 
 int range fa0/9-24
 switchport port-security
@@ -288,6 +294,7 @@ switchport port-security violation protect
 switchport port-security mac-address sticky 
 switchport port-security maximum 5
 
+
 int range fa0/6-24
 switchport port-security
 switchport port-security violation protect
@@ -302,109 +309,85 @@ switchport port-security mac-address sticky
 switchport port-security maximum 5
 
 
-***********************************************Ethernnel Channel
 
---- PORT CHANEL
 
+# ========================================================
+
+# CONFIGURACION DE Ethernnel Channel
+# --------------------------------
+# --- PORT CHANEL
 LACP
 enable
 config t
-################################### S0
-interface range f0/5-6
+interface (range)? fa#/#(-#)?
 channel-protocol lacp
-channel-group 1 mode active
-
-interface range f0/1-2
-channel-protocol lacp
-channel-group 2 mode active
-
-interface range f0/3-4
-channel-protocol lacp
-channel-group 4 mode active
-
-################################### S1
-interface range f0/3-4
-channel-protocol lacp
-channel-group 1 mode active
-
-################################### S2
-interface range f0/3-4
-channel-protocol lacp
-channel-group 2 mode active
-
-interface range f0/5-6
-channel-protocol lacp
-channel-group 3 mode active
-
-
-################################### S3
-interface range f0/5-6
-channel-protocol lacp
-channel-group 3 mode active
-
-interface range f0/3-4
-channel-protocol lacp
-channel-group 4 mode active
-
+channel-group 1 mode active||pasive
 
 PAGP
 enable
 config t
-################################### S0
-interface range f0/5-6
+interface (range)? fa#/#(-#)?
 channel-protocol pagp
-channel-group 1 mode desirable
+channel-group 1 mode auto||desirable
 
-interface range f0/1-2
-channel-protocol pagp
-channel-group 2 mode desirable
-
-interface range f0/3-4
-channel-protocol pagp
-channel-group 4 mode desirable
-
-################################### S1
-interface range f0/3-4
-channel-protocol pagp
-channel-group 1 mode desirable
-
-################################### S2
-interface range f0/3-4
-channel-protocol pagp
-channel-group 2 mode desirable
-
-interface range f0/5-6
-channel-protocol pagp
-channel-group 3 mode desirable
-
-
-################################### S3
-interface range f0/5-6
-channel-protocol pagp
-channel-group 3 mode active
-
-interface range f0/3-4
-channel-protocol pagp
-channel-group 4 mode desirable
-
-verificar PortChannel
+# --------------------------------
+# verificar PortChannel
 show etherchannel summary
 
-verificar tipo de port channel
+# verificar tipo de port channel
 show etherchannel port-channel
 
-ROUTER
 
-ENCENDER PUERTO
+
+
+# ========================================================
+
+# CONFIGURACION DE InterVLAN: ROUTER ON A STICK
+# --------------------------------
+# Configuraciones en Router
+enable #habilitar puerto
+config t
+int fa0/0 #interfaz para VLAN's
+no shutdown
+exit
+
+# Creacion de InterVlan Ventas
+int fa0/0.14
+encapsulation dot1Q 14
+# gateway y mascara para ventas
+ip address 192.168.14.1 255.255.255.240
+exit
+
+# Creacion de InterVlan Distribucion
+int fa0/0.24
+encapsulation dot1Q 24
+# gateway y mascara para Distribucion
+ip address 192.168.24.17 255.255.255.240
+exit
+
+# Creacion de InterVlan Administracion
+int fa0/0.24
+encapsulation dot1Q 34
+# gateway y mascara para Adinistracion
+ip address 192.168.24.33 255.255.255.240
+exit
+
+# Creacion de InterVlan Servidores
+int fa0/0.24
+encapsulation dot1Q 44
+# gateway y mascara para Servidores
+ip address 192.168.24.48 255.255.255.240
+exit
+
+# --------------------------------
+# Configuracion En Switch 0
 enable
 config t
-interface fa#/#
-no shutdown
+# interfaz conectada al router
+int fa0/5
+# setear en modo truncal
+switchport mode trunk
+exit
 
-Router On A stick
-
-interface fastEthernet #/#.#vlan
-encapsulation dot1Q #vlan
-ip address gateway MaskSubRed
-
-copy running-config startup-config
+# --------------------------------
+# ========================================================
