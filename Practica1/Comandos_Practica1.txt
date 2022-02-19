@@ -309,16 +309,83 @@ switchport port-security maximum 5
 LACP
 enable
 config t
-interface (range)? fa#/#(-#)?
+################################### S0
+interface range f0/5-6
 channel-protocol lacp
-channel-group 1 mode active||pasive
+channel-group 1 mode active
+
+interface range f0/1-2
+channel-protocol lacp
+channel-group 2 mode active
+
+interface range f0/3-4
+channel-protocol lacp
+channel-group 4 mode active
+
+################################### S1
+interface range f0/3-4
+channel-protocol lacp
+channel-group 1 mode active
+
+################################### S2
+interface range f0/3-4
+channel-protocol lacp
+channel-group 2 mode active
+
+interface range f0/5-6
+channel-protocol lacp
+channel-group 3 mode active
+
+
+################################### S3
+interface range f0/5-6
+channel-protocol lacp
+channel-group 3 mode active
+
+interface range f0/3-4
+channel-protocol lacp
+channel-group 4 mode active
+
 
 PAGP
 enable
 config t
-interface (range)? fa#/#(-#)?
+################################### S0
+interface range f0/5-6
 channel-protocol pagp
-channel-group 1 mode auto||desirable
+channel-group 1 mode desirable
+
+interface range f0/1-2
+channel-protocol pagp
+channel-group 2 mode desirable
+
+interface range f0/3-4
+channel-protocol pagp
+channel-group 4 mode desirable
+
+################################### S1
+interface range f0/3-4
+channel-protocol pagp
+channel-group 1 mode desirable
+
+################################### S2
+interface range f0/3-4
+channel-protocol pagp
+channel-group 2 mode desirable
+
+interface range f0/5-6
+channel-protocol pagp
+channel-group 3 mode desirable
+
+
+################################### S3
+interface range f0/5-6
+channel-protocol pagp
+channel-group 3 mode active
+
+interface range f0/3-4
+channel-protocol pagp
+channel-group 4 mode desirable
 
 verificar PortChannel
 show etherchannel summary
