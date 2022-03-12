@@ -1,0 +1,491 @@
+Comandos
+-------------------------------------------------------------------
+Router 5
+
+Router>
+Router>enable
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#int se0/3/0
+Router(config-if)#ip add
+Router(config-if)#ip address 1.1.1.1 255.255.255.252
+Router(config-if)#clock rate 56000
+This command applies only to DCE interfaces
+Router(config-if)#no shut
+Router(config-if)#no shutdown 
+
+%LINK-5-CHANGED: Interface Serial0/3/0, changed state to down
+Router(config-if)#exit
+Router(config)#
+
+Router(config-if)#exit
+Router(config)#int gig0/0
+Router(config-if)#ip ad
+Router(config-if)#ip address 2.2.2.2 255.255.255.252
+Router(config-if)#no shut
+Router(config-if)#no shutdown 
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+Router(config-if)#exit
+Router(config)#int gig0/1
+Router(config-if)#ip add
+Router(config-if)#ip address 3.3.3.2 255.255.255.252
+Router(config-if)#no shut
+Router(config-if)#no shutdown 
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/1, changed state to up
+
+Router(config-if)#exit
+Router(config)#int gig0/2
+Router(config-if)#ip ad
+Router(config-if)#ip address 4.4.4.2 255.255.255.252
+Router(config-if)#no shut
+Router(config-if)#no shutdown 
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/2, changed state to up
+
+Router(config-if)#exit
+-------------------------------------------------------------------
+
+Router 8
+
+Router#
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#
+Router(config)#
+Router(config)#int gig0/0
+Router(config-if)#ip ad
+Router(config-if)#ip address 2.2.2.1 255.255.255.252
+Router(config-if)#no shut
+Router(config-if)#no shutdown 
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+Router(config-if)#exit
+Router(config)#int gig0/1
+Router(config-if)#ip add
+Router(config-if)#ip address 192.168.52.1 255.255.255.248
+Router(config-if)#no shutdo
+Router(config-if)#no shutdown 
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
+
+Router(config-if)#exit
+Router(config)#
+
+-------------------------------------------------------------------
+
+Router 7
+
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#int gig0/0
+Router(config-if)#ip add
+Router(config-if)#ip address 3.3.3.1 255.255.255.252
+Router(config-if)#no shut
+Router(config-if)#no shutdown 
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+Router(config-if)#exit
+Router(config)#int gig0/1
+Router(config-if)#ip add
+Router(config-if)#ip address 192.168.52.8 255.255.255.248
+Bad mask /29 for address 192.168.52.8
+Router(config-if)#ip address 192.168.52.9 255.255.255.248
+Router(config-if)#no shutdown
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
+
+Router(config-if)#
+
+-------------------------------------------------------------------
+Router 9
+
+Router>enable
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#
+Router(config)#int gig0/0
+Router(config-if)#ip ad
+Router(config-if)#ip address 4.4.4.1 255.255.255.252
+Router(config-if)#no shut
+Router(config-if)#no shutdown 
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+Router(config-if)#
+Router(config-if)#exit
+Router(config)#int gig0/1
+Router(config-if)#ip add
+Router(config-if)#ip address 192.168.52.16
+% Incomplete command.
+Router(config-if)#ip address 192.168.52.17 255.255.255.248
+Router(config-if)#no shu
+Router(config-if)#no shutdown 
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
+
+Router(config-if)#exit
+Router(config)#
+-------------------------------------------------------------------
+################################################## PROTOCOLOS
+Router 8
+Router(config-if)#exit
+Router(config)#router ei
+Router(config)#router eigrp 100
+Router(config-router)#net
+Router(config-router)#net
+Router(config-router)#network 2.2.2.0 0.0.0.3
+Router(config-router)#network 192.168.52.0 0.0.0.7
+Router(config-router)#exit
+Router(config)#
+
+-------------------------------------------------------------------
+
+Router 7
+
+Router(config-if)#
+Router(config-if)#exit
+Router(config)#
+Router(config)#router rip
+Router(config-router)#version 2
+Router(config-router)# de
+Router(config-router)# default-information ori
+Router(config-router)# default-information originate 
+Router(config-router)#net
+Router(config-router)#network 3.3.3.0
+Router(config-router)#net
+Router(config-router)#network 192.168.52.8
+Router(config-router)#no au
+Router(config-router)#no auto-summary 
+Router(config-router)#exit
+Router(config)#
+
+
+-------------------------------------------------------------------
+Router 9
+Router#
+Router#
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#router ei
+Router(config)#router eigrp 100
+Router(config-router)#net
+Router(config-router)#network 4.4.4.0 0.0.0.3
+Router(config-router)#net
+Router(config-router)#network 192.168.52.16 0.0.0.7
+Router(config-router)#exit
+Router(config)#
+
+
+
+-------------------------------------------------------------------
+
+Router 5
+
+Router>
+Router>enable
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#
+Router(config)#router ei
+Router(config)#router eigrp 100
+Router(config-router)#netw
+Router(config-router)#network 2.2.2.0 0.0.0.3
+Router(config-router)#
+%DUAL-5-NBRCHANGE: IP-EIGRP 100: Neighbor 2.2.2.1 (GigabitEthernet0/0) is up: new adjacency
+
+Router(config-router)#net
+Router(config-router)#network 4.4.4.0 0.0.0.3
+Router(config-router)#
+%DUAL-5-NBRCHANGE: IP-EIGRP 100: Neighbor 4.4.4.1 (GigabitEthernet0/2) is up: new adjacency
+
+Router(config-router)#exit
+
+Router(config)#router rip
+Router(config-router)#version 2
+Router(config-router)#de
+Router(config-router)#default-information ori
+Router(config-router)#default-information originate 
+Router(config-router)#net
+Router(config-router)#network 3.3.3.0
+Router(config-router)#no au
+Router(config-router)#no auto-summary 
+Router(config-router)#exit
+Router(config)#
+------------------------------------------------------------------
+#####################################
+Distribuiciones de red
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#router rip
+Router(config-router)#version 2
+Router(config-router)#de
+Router(config-router)#default-information ori
+Router(config-router)#default-information originate 
+Router(config-router)#redis
+Router(config-router)#redistribute ei
+Router(config-router)#redistribute eigrp 100 metric 15
+Router(config-router)#no au
+Router(config-router)#no auto-summary 
+Router(config-router)#
+Router(config-router)#exit
+Router(config)#router e
+Router(config)#router eigrp 100
+Router(config-router)#redis
+Router(config-router)#redistribute rip metric 255 1 1 1 1
+Router(config-router)#exit
+Router(config)#
+
+-------------------------------------------------------------------
+
+Router 11
+Router>enable
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#
+Router(config)#int gig0/0
+Router(config-if)#ip add
+Router(config-if)#ip address 6.6.6.1 255.255.255.248
+Router(config-if)#no shut
+Router(config-if)#no shutdown 
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+Router(config-if)#exit
+Router(config)#int gig0/1
+Router(config-if)#ip add
+Router(config-if)#ip address 192.168.52.25 255.255.255.248
+Router(config-if)#no shut
+Router(config-if)#no shutdown 
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
+
+Router(config-if)#exit
+Router(config)#
+-------------------------------------------------------------------
+
+Router 13
+
+Router>enable
+Router#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#
+Router(config)#int gig0/0
+Router(config-if)#ip add
+Router(config-if)#ip address 7.7.7.1 255.255.255.252
+Router(config-if)#no shutdown
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+Router(config-if)#exit
+Router(config)#
+Router(config)#int gig0/1
+Router(config-if)#ip add
+Router(config-if)#ip address 192.168.52.32 255.255.255.228
+Bad mask 0xFFFFFFE4 for address 192.168.52.32
+Router(config-if)#ip address 192.168.52.33 255.255.255.248
+Router(config-if)#no shu
+Router(config-if)#no shutdown 
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
+
+Router(config-if)#exit
+Router(config)#
+-------------------------------------------------------------------
+Router 12
+
+Router>
+Router>
+Router>enable
+Router#
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#
+Router(config)#int gig0/0
+Router(config-if)#ip add
+Router(config-if)#ip address 8.8.8.1 255.255.255.252
+Router(config-if)#no shu
+Router(config-if)#no shutdown 
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+Router(config-if)#
+Router(config-if)#exit
+Router(config)#int gig0/1
+Router(config-if)#ip add
+Router(config-if)#ip address 192.168.52.41 255.255.255.248
+Router(config-if)#no shut
+Router(config-if)#no shutdown 
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
+
+Router(config-if)#exit
+Router(config)#
+-------------------------------------------------------------------
+Router 10
+Router(config)#
+Router(config)#int se0/3/0
+Router(config-if)#ip add
+Router(config-if)#ip address 5.5.5.1 255.255.255.252
+Router(config-if)#clock rate 56000
+This command applies only to DCE interfaces
+Router(config-if)#no shutdown
+
+%LINK-5-CHANGED: Interface Serial0/3/0, changed state to down
+Router(config-if)#exit
+Router(config)#int gig0/0
+Router(config-if)#ip add
+Router(config-if)#ip address 6.6.6.2 255.255.255.252
+Router(config-if)#no shutdown
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+Router(config-if)#exit
+Router(config)#int gig0/1
+Router(config-if)#ip add
+Router(config-if)#ip address 7.7.7.2 255.255.255.252
+Router(config-if)#no shutdo
+Router(config-if)#no shutdown 
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
+exit
+Router(config)#
+Router(config)#exit
+
+Router(config)#int gig0/2
+Router(config-if)#ip address 8.8.8.2 255.255.255.252
+Router(config-if)#no shutdown
+Router(config-if)#
+Router(config-if)#exit
+Router(config)#
+
+-------------------------------------------------------------------
+##################################PROTOCOLOS
+Router 13
+
+Router#enable
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#router os
+Router(config)#router ospf 100
+Router(config-router)#net
+Router(config-router)#network 7.7.7.0 0.0.0.3 area 0
+Router(config-router)#network 192.168.52.32 0.0.0.7 area 0
+Router(config-router)#exit
+Router(config)#
+
+-------------------------------------------------------------------
+Router 11
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#router eig
+Router(config)#router eigrp 100
+Router(config-router)#net
+Router(config-router)#network 6.6.6.0 0.0.0.3
+Router(config-router)#network 192.168.52.24 0.0.0.7
+Router(config-router)#exit
+Router(config)#
+
+-------------------------------------------------------------------
+Router 12
+Router>enable
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#router e
+Router(config)#router eigrp 
+% Incomplete command.
+Router(config)#router eigrp 100
+Router(config-router)#network 8.8.8.0 0.0.0.3
+Router(config-router)#network 192.168.52.40 0.0.0.7
+Router(config-router)#exit
+Router(config)#
+
+-------------------------------------------------------------------
+
+Router 10
+
+
+Router>enable
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#router e
+Router(config)#router eigrp 100
+Router(config-router)#net
+Router(config-router)#network 7.7.7.0 255.255.255.252
+Router(config-router)#network 6.6.6.0 255.255.255.252
+Router(config-router)#
+%DUAL-5-NBRCHANGE: IP-EIGRP 100: Neighbor 6.6.6.1 (GigabitEthernet0/0) is up: new adjacency
+
+Router(config-router)#network 8.8.8.0 255.255.255.252
+Router(config-router)#
+%DUAL-5-NBRCHANGE: IP-EIGRP 100: Neighbor 8.8.8.1 (GigabitEthernet0/2) is up: new adjacency
+
+Router(config-router)#
+Router(config-router)#exit 
+Router(config)#router os
+Router(config)#router ospf 200
+Router(config-router)#netwo
+Router(config-router)#network 7.7.7.0 0.0.0.3 area 0
+Router(config-router)#exit
+Router(config)#clear
+                 ^
+% Invalid input detected at '^' marker.
+	
+Router(config)#
+01:13:32: %OSPF-5-ADJCHG: Process 200, Nbr 192.168.52.33 on GigabitEthernet0/1 from LOADING to FULL, Loading Done
+-------------------------------------------------------------------
+################# Distribuiciones Router 10
+
+-------------------------------------------------------------------
+
+
+-------------------------------------------------------------------
+
+
+-------------------------------------------------------------------
+
+
+-------------------------------------------------------------------
