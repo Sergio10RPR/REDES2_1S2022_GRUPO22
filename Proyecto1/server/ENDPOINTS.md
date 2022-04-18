@@ -4,7 +4,7 @@
 
 Obtiene la lista con todos los administradores en la base de datos
 * Tipo: *GET*
-* Endpoint-> `http://localhost:3000/getadmins`
+* Endpoint-> `http://localhost:3000/getAdmins`
 * Recibe: *No tiene parametros*
 * Devuelve:
 
@@ -45,7 +45,7 @@ Obtiene la lista con todos los administradores en la base de datos
 ## GET DEVPS
 Obtiene la lista con todos los desarrolladores en la base de datos
 * Tipo: *GET*
-* Endpoint-> `http://localhost:3000/getdevs`
+* Endpoint-> `http://localhost:3000/getDevs`
 * Recibe: *No tiene parametros*
 * Devuelve:
 
@@ -80,7 +80,7 @@ Obtiene la lista con todos los desarrolladores en la base de datos
 ## GET IMAGES
 Obtiene la lista con todas las imagenes en la base de datos
 * Tipo: *GET*
-* Endpoint-> `http://localhost:3000/getimages`
+* Endpoint-> `http://localhost:3000/getImages`
 * Recibe: *No tiene parametros*
 * Devuelve:
 

@@ -1,16 +1,15 @@
 const express = require("express");
-var mysql = require("mysql");
+const cors = require("cors");
+const bodyParser = require("body-parser");
 
 const app = express();
 const port = 3000;
 
-var connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "password",
-  database: "bd_redes2",
-  port: 3306,
-});
+app.use(bodyParser.json({ limit: "10mb" }));
+app.use(bodyParser.urlencoded({ extended: true, limit: "10mb" }));
+app.use(cors());
+
+const connection = require('./config/connection').connection;
 
 app.get("/", (req, res) => {
   res.send("API Connection! Redes2");
@@ -19,8 +18,12 @@ app.get("/", (req, res) => {
 /**
  * Endpoint que obtiene lista de Administradores
  */
-app.get("/getadmins", (req, res) => {
-  let query = "SELECT * FROM administrador;";
+app.get("/getAdmins", (req, res) => {
+  let query = `
+  SELECT id_administrador,nombre_admin,descripcion,nombre_rol,link_imagen
+  FROM administrador, rol
+  WHERE cod_rol = id_rol;
+  `;
   connection.query(query, (error, result) => {
     if (error) {
       console.log("Error al correr consulta:", error);
@@ -35,8 +38,13 @@ app.get("/getadmins", (req, res) => {
 /**
  * Endpoint que obtiene lista de desarrolladores
  */
-app.get("/getdevs", (req, res) => {
-  let query = "SELECT * FROM desarrollador;";
+app.get("/getDevs", (req, res) => {
+  let query = `
+  SELECT id_desarrollador,nombre_dev,carnet,nombre_curso,nombre_rol,descripcion,link_imagen
+  FROM desarrollador, curso, rol
+  WHERE cod_curso = id_curso
+  AND cod_rol = id_rol;
+  `;
   connection.query(query, (error, result) => {
     if (error) {
       console.log(error);
@@ -49,9 +57,9 @@ app.get("/getdevs", (req, res) => {
 });
 
 /**
- * Endpoint que ontiene lista de imagenes
+ * Endpoint que obtiene lista de imagenes
  */
-app.get("/getimages", (req, res) => {
+app.get("/getImages", (req, res) => {
   let query = "SELECT * FROM imagen;";
   connection.query(query, (error, result) => {
     if (error) {
@@ -64,14 +72,10 @@ app.get("/getimages", (req, res) => {
   });
 });
 
-app.post("/addadmin", (req, res) => {
-  let body = rea.body;
+app.post("/addAdmin", (req, res) => {
+  let body = req.body;
 });
 
 app.listen(port, () => {
   console.log(`API app listening on port ${port}`);
-  connection.connect(function (err) {
-    if (err) throw err;
-    console.log("Connected to Database!");
-  });
 });

@@ -17,7 +17,6 @@ create table curso (
 create table administrador (
     id_administrador int not null AUTO_INCREMENT,
     nombre_admin varchar(30),
-    apellido_admin varchar(30),
     descripcion varchar(300),
     cod_rol int,
     link_imagen varchar(300),
