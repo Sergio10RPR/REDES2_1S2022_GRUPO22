@@ -1,5 +1,5 @@
 # Proyecto Uno - Redes de Computadoras 2
-# Manual de Tecnico
+# Manual Tecnico
 
 # Indice
 
