@@ -2,11 +2,18 @@
 # Manual Tecnico
 
 # Indice
-
+* [Arquitectura](#arquitectura)
 * [Web App](#web-app)
-* [](#)
-* [](#)
+* [Base de Datos](#)
 
+## Arquitectura
+
+Tomando en cuenta que se necesita tener una base de datos y una página web
+se tiene dos servidores para al momento de exponer puertos y
+se pueda restringir quien tenga acceso.
+Ucron tiene la siguiente propuesta:
+
+<img src='./images/img4.png' />
 
 ## Web App
 
@@ -44,7 +51,13 @@ my-app/
 ```
 
 Para facilitar el uso de `ReactJS` se hace uso de [`Primefaces-PrimeReact`](https://www.primefaces.org/primereact/).
+Vistas de la aplicacion web:
 
+<img src='./images/img1.png' />
+
+<img src='./images/img2.png' />
+
+<img src='./images/img3.png' />
 
 
 
