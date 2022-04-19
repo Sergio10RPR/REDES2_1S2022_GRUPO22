@@ -102,8 +102,11 @@ protocolo (TCP/IP) por el puerto 3306 en la instancia que contiene la BD
 
 ## Proveedor de dominio
 Por ser uno de los 2 recomendados para utilizarse dentro del proyecto y por motivos de costo, se eligió utilizar
-https://www.namecheap.com/ como proveedor de dominio y se adquirio el dominio redes2grupo22proyecto.xyz 
+https://www.namecheap.com/ como proveedor de dominio 
+<img src='./images/dominio2.png' />
 
+y se adquirio el dominio redes2grupo22proyecto.xyz 
+<img src='./images/dominio1.png' />
 
 
 ## Load Balancer
