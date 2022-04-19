@@ -1,10 +1,11 @@
-# Proyecto Uno - Redes de Computadoras 2
-# Manual Tecnico
+# Proyecto Uno - Manual Tecnico
 
 # Indice
 * [Arquitectura](#arquitectura)
 * [Web App](#web-app)
-* [Base de Datos](#)
+* [Base de Datos](#base-de-datos)
+* [Proveedor de dominio](#proveedor-de-dominio)
+* [Load Balacer](#load-balancer)
 
 ## Arquitectura
 
@@ -59,5 +60,9 @@ Vistas de la aplicacion web:
 
 <img src='./images/img3.png' />
 
+## Base de Datos
 
+## Proveedor de dominio
+
+## Load Balancer
 
