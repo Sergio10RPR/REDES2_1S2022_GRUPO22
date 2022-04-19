@@ -4,16 +4,16 @@ import { APIService } from "../service/APIService";
 
 const Inicio = () => {
     const [listaImagenes, setListaImagenes] = useState([
-        {
-            itemImageSrc: "https://c4.wallpaperflare.com/wallpaper/912/685/297/windows-10-windows-10x-windows-11-minimalism-material-minimal-hd-wallpaper-preview.jpg",
-            thumbnailImageSrc: "https://c4.wallpaperflare.com/wallpaper/912/685/297/windows-10-windows-10x-windows-11-minimalism-material-minimal-hd-wallpaper-preview.jpg",
-            alt: "windows2",
-        },
-        {
-            itemImageSrc: "https://c4.wallpaperflare.com/wallpaper/474/914/509/windows-10-windows-10x-windows-11-minimalism-material-minimal-hd-wallpaper-preview.jpg",
-            thumbnailImageSrc: "https://c4.wallpaperflare.com/wallpaper/474/914/509/windows-10-windows-10x-windows-11-minimalism-material-minimal-hd-wallpaper-preview.jpg",
-            alt: "windows",
-        },
+        // {
+        //     itemImageSrc: "https://c4.wallpaperflare.com/wallpaper/912/685/297/windows-10-windows-10x-windows-11-minimalism-material-minimal-hd-wallpaper-preview.jpg",
+        //     thumbnailImageSrc: "https://c4.wallpaperflare.com/wallpaper/912/685/297/windows-10-windows-10x-windows-11-minimalism-material-minimal-hd-wallpaper-preview.jpg",
+        //     alt: "windows2",
+        // },
+        // {
+        //     itemImageSrc: "https://c4.wallpaperflare.com/wallpaper/474/914/509/windows-10-windows-10x-windows-11-minimalism-material-minimal-hd-wallpaper-preview.jpg",
+        //     thumbnailImageSrc: "https://c4.wallpaperflare.com/wallpaper/474/914/509/windows-10-windows-10x-windows-11-minimalism-material-minimal-hd-wallpaper-preview.jpg",
+        //     alt: "windows",
+        // },
     ]);
 
     const responsiveOptions = [
