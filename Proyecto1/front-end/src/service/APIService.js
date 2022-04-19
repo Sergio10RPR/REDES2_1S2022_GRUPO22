@@ -9,14 +9,14 @@ export class APIService {
     };
 
     getImages() {
-        return Axios.get(`${BASE_URL}/`, {}, this.header);
+        return Axios.get(`${BASE_URL}/getImages`, {}, this.header);
     }
 
     getDevelopers() {
-        return Axios.get(`${BASE_URL}/`, {}, this.header);
+        return Axios.get(`${BASE_URL}/getDevs`, {}, this.header);
     }
 
     getAdmins() {
-        return Axios.get(`${BASE_URL}/`, {}, this.header);
+        return Axios.get(`${BASE_URL}/getAdmins`, {}, this.header);
     }
 }

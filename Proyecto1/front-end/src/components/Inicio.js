@@ -35,7 +35,12 @@ const Inicio = () => {
         try {
             new APIService()
                 .getImages()
-                .then((res) => {})
+                .then((res) => {
+                    let lista = res.data.data.map((item) => {
+                        return { itemImageSrc: item.link_imagen, thumbnailImageSrc: item.link_imagen, alt: `imagen-no-${item.id_image}` };
+                    });
+                    setListaImagenes(lista);
+                })
                 .catch((err) => {});
         } catch (error) {
             console.error(error);
@@ -43,7 +48,7 @@ const Inicio = () => {
     }, []);
 
     const itemTemplate = (item) => {
-        return <img preview src={item.itemImageSrc} onError={(e) => (e.target.src = "https://www.bandswallpapers.com/data/media/1/AC_DC_1b1.jpg")} alt={item.alt} style={{ width: "100%"}} />;
+        return <img preview src={item.itemImageSrc} onError={(e) => (e.target.src = "https://www.bandswallpapers.com/data/media/1/AC_DC_1b1.jpg")} alt={item.alt} style={{ width: "100%" }} />;
     };
 
     const thumbnailTemplate = (item) => {
@@ -55,8 +60,7 @@ const Inicio = () => {
             <div className="col-12">
                 <div className="card">
                     <h2>Galeria de Fotografias</h2>
-                    <Galleria value={listaImagenes} responsiveOptions={responsiveOptions} numVisible={5} circular style={{ maxWidth: '640px' }}
-                    showItemNavigators showThumbnails={false} item={itemTemplate} thumbnail={thumbnailTemplate} />
+                    <Galleria value={listaImagenes} responsiveOptions={responsiveOptions} numVisible={5} circular style={{ maxWidth: "640px" }} showItemNavigators showThumbnails={false} item={itemTemplate} thumbnail={thumbnailTemplate} />
                 </div>
             </div>
         </div>

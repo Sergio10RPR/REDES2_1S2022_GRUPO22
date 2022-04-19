@@ -2,7 +2,7 @@ var mysql = require('mysql');
 const dotenv = require('dotenv').config();
 
 var connection = mysql.createConnection({
-    host: process.env.EC2AWS_MYSQLHOSTNAME,
+    host: process.env.EC2AWS_MYSQL_HOSTNAME,
     user: process.env.EC2AWS_MYSQL_USERNAME,
     password: process.env.EC2AWS_MYSQL_PASSWORD,
     port: process.env.EC2AWS_MYSQL_PORT,

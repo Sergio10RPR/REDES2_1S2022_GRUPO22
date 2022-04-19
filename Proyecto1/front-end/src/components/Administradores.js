@@ -5,30 +5,30 @@ import { Button } from "primereact/button";
 
 const Administradores = () => {
     const [listaAdministradores, setListaAdiminstradores] = useState([
-        {
-            nombre: "Nombre1",
-            puesto: "Puesto1",
-            descripcion: "Esta es la descripcion para: El usuario numero 1 que puede ver a continuacion",
-            foto: "https://c4.wallpaperflare.com/wallpaper/912/685/297/windows-10-windows-10x-windows-11-minimalism-material-minimal-hd-wallpaper-preview.jpg",
-        },
-        {
-            nombre: "Nombre2",
-            puesto: "Puesto2",
-            descripcion: "Esta es la descripcion para:",
-            foto: "https://c4.wallpaperflare.com/wallpaper/505/881/248/windows-10-windows-10x-windows-11-minimalism-material-minimal-hd-wallpaper-preview.jpg",
-        },
-        {
-            nombre: "Nombre3",
-            puesto: "Puesto3",
-            descripcion: "Esta es la descripcion para:",
-            foto: "https://c4.wallpaperflare.com/wallpaper/253/947/731/windows-10-windows-10x-windows-11-minimalism-material-minimal-hd-wallpaper-preview.jpg",
-        },
-        {
-            nombre: "Nombre4",
-            puesto: "Puesto4",
-            descripcion: "Esta es la descripcion para:",
-            foto: "https://c4.wallpaperflare.com/wallpaper/878/968/35/windows-10-windows-10x-windows-11-minimalism-material-minimal-hd-wallpaper-preview.jpg",
-        },
+        // {
+        //     nombre_admin: "Nombre1",
+        //     nombre_rol: "Puesto1",
+        //     descripcion: "Esta es la descripcion para: El usuario numero 1 que puede ver a continuacion",
+        //     link_imagen: "https://c4.wallpaperflare.com/wallpaper/912/685/297/windows-10-windows-10x-windows-11-minimalism-material-minimal-hd-wallpaper-preview.jpg",
+        // },
+        // {
+        //     nombre_admin: "Nombre2",
+        //     nombre_rol: "Puesto2",
+        //     descripcion: "Esta es la descripcion para:",
+        //     link_imagen: "https://c4.wallpaperflare.com/wallpaper/505/881/248/windows-10-windows-10x-windows-11-minimalism-material-minimal-hd-wallpaper-preview.jpg",
+        // },
+        // {
+        //     nombre_admin: "Nombre3",
+        //     nombre_rol: "Puesto3",
+        //     descripcion: "Esta es la descripcion para:",
+        //     link_imagen: "https://c4.wallpaperflare.com/wallpaper/253/947/731/windows-10-windows-10x-windows-11-minimalism-material-minimal-hd-wallpaper-preview.jpg",
+        // },
+        // {
+        //     nombre_admin: "Nombre4",
+        //     nombre_rol: "Puesto4",
+        //     descripcion: "Esta es la descripcion para:",
+        //     link_imagen: "https://c4.wallpaperflare.com/wallpaper/878/968/35/windows-10-windows-10x-windows-11-minimalism-material-minimal-hd-wallpaper-preview.jpg",
+        // },
     ]);
 
     useEffect(() => {
@@ -36,7 +36,8 @@ const Administradores = () => {
             new APIService()
                 .getAdmins()
                 .then((res) => {
-                    console.log({ res });
+                    console.log( res.data.data );
+                    setListaAdiminstradores(res.data.data)
                 })
                 .catch((err) => {
                     console.log([err]);
@@ -46,8 +47,8 @@ const Administradores = () => {
         }
     }, []);
 
-    const header = (foto) => {
-        return <img alt="Card" src={foto} onError={(e) => (e.target.src = "https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png")} />;
+    const header = (link_imagen) => {
+        return <img alt="Card" src={link_imagen !== null? link_imagen: ''} onError={(e) => (e.target.src = "https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png")} />;
     };
 
     const footer = (admin) => {
@@ -68,7 +69,7 @@ const Administradores = () => {
                         {listaAdministradores.length !== 0 ? (
                             listaAdministradores.map((admin) => (
                                 <>
-                                    <Card title={admin.nombre} subTitle={admin.puesto} style={{ width: "25em" }} footer={()=>footer(admin)} header={()=>header(admin.foto)}>
+                                    <Card title={admin.nombre_admin} subTitle={admin.nombre_rol} style={{ width: "25em" }} footer={()=>footer(admin)} header={()=>header(admin.link_imagen)}>
                                         <p className="m-0" style={{ lineHeight: "1.5" }}>
                                             {admin.descripcion}
                                         </p>
